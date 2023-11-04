@@ -18,13 +18,11 @@ public class ListController {
 	//get logut
 	@GetMapping
 	public String loggUt() {
-		return "logginview";
+		return "innlogging"; //jsp filnavnet
 	}
 	
-	//post loggut
-	//redirect loggin
 	@PostMapping
 	public String loggetUt() {
-		return "redirect:loggUt";
+		return "redirect:logginn";
 	}
 }

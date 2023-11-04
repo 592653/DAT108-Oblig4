@@ -12,7 +12,7 @@ import no.hvl.dat108.InputValidator;
 import no.hvl.dat108.Util.LoginUtil;
 
 @Controller
-@RequestMapping("/login")
+@RequestMapping("/loggin")
 public class LoginController {
 	
 	//her trenger vi ein ny sesjon
@@ -20,19 +20,19 @@ public class LoginController {
 	//get login er forespøsel om å få loginsiden
 	@GetMapping
 	public String hentLoginSkjema() {
-		return "loginView";
+		return "innlogging";
 	}
 	@PostMapping
-	public String provAaLoggeInn(@RequestParam String username, HttpServletRequest request, RedirectAttributes ra) {
+	public String provAaLoggeInn(@RequestParam String fornavn, HttpServletRequest request, RedirectAttributes ra) {
 		
-		if(!InputValidator.isValidUsername(username)) {
+		if(!InputValidator.gyldigFornavn(fornavn)) {
 			//Feilmelding og gå tilbake til logginsiden
-			ra.addFlashAttribute("redirectMessage", "Ugyldig brukernavn");
+			ra.addFlashAttribute("redirectMessage", "Ugyldig fornavn");
 			//redirekt til logginsiden
 			return "resirect:login";
 			//ikkje navnet på viewet men navnet på url
 		}
-		LoginUtil.loggInnBruker(request, username);
+		LoginUtil.loggInnBruker(request, fornavn);
 		return "redirect:deltagerliste";
 	}
 

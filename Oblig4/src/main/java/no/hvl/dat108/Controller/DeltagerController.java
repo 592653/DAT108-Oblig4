@@ -28,6 +28,16 @@ public class DeltagerController {
 	public String paameldtRe(HttpSession session) {
 		return "redirect:paameldt"; //redirecte til paamelt
 	}
+//	@PostMapping
+//	public String bestillingMedPrg(@RequestParam String vare, HttpSession session) {
+//
+//	   //Alternativ 1 (lagre parameter i ein HTTP session attribute)
+//	   session.setAttribute("SAvare", vare);
+//	   //Denne vil lagres på server og hente ut så lenge sesjon pågår
+//	   //Fordel/ulempe "Henger igjen" så lenge nettleser er open
+//	   
+//	    return "redirect:kvittering"; //NB! kvittering er ein URL, ikkje et view
+//	}
 	
 }
 

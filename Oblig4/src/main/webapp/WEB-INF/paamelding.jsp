@@ -26,11 +26,11 @@
 			<label>Passord repetert</label>
 			<input type="password" name="passordRepetert" />
 			
-			<label>Kjønn</label> 
+			<label>Kjonn</label> 
 			<input type="radio" name="kjonn" value="mann" checked="checked" />mann
 			<input type="radio" name="kjonn" value="kvinne" />kvinne
 			     
-			<br><br><button type="submit">Meld meg på</button>
+			<br><br><button type="submit">Meld meg paa</button>
 		</fieldset>
 	</form>
 </body>
