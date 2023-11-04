@@ -13,11 +13,11 @@ public class Deltager {
 //	String hash
 //	String salt
 //	mobil
-//	Her må vi ha med flere
+
 
 	//passord inni herS
 	
-	public Deltager() {
+	public Deltager() { //Konstruktør
 		
 	}
 	
