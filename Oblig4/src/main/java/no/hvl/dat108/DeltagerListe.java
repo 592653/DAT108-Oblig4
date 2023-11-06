@@ -11,4 +11,5 @@ public class DeltagerListe {
 		deltagere.add(deltager);
 		antall++;
 	}
+	
 }

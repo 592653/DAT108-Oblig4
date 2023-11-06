@@ -7,6 +7,7 @@ public class InputValidator {
 	    public static final String SIX_OR_MORE_TIMES = "{6,}";
 	    public static final String TWO_TIL_FOURTHY = "{2,40}";
 	    public static final String EIGHT_DIGIT_LONG = "\\d{8}";
+	    public static final String MAN_OR_WOMAN = "{mann|kvinne}";
 
 	    //Etternavn må være 2 lang og inneholde kun bokstaver
 	    public static boolean gyldigEtternavn(String etternavn) {

@@ -8,21 +8,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import no.hvl.dat108.InputValidator;
 import no.hvl.dat108.Util.LoginUtil;
 
 @Controller
-@RequestMapping("/deltagerliste")
-public class ListController {
+public class DeltagerListeController {
 
 	//get logut
-	@GetMapping
+	@GetMapping(value="/deltagerliste")
 	public String loggUt() {
-		return "innlogging"; //jsp filnavnet
+		return "logginn"; //jsp filnavnet
 	}
 	
-	@PostMapping
+	@PostMapping(value="/deltagerliste")
 	public String loggetUt() {
-		return "redirect:logginn";
+		return "redirect:innlogging"; //URL
 	}
 }
