@@ -5,8 +5,8 @@
 	<link rel="stylesheet" href="css/simple.css">
 	<title>Deltagerliste</title>
 </head>
-<body>
-    <p>Innlogget som: 90123456 / Arne Arnesen</p>
+<body> 
+    <p>Innlogget som: ${d.mobil} / ${d.fornavn}${d.etternavn}</p>
 	<h2>Deltagerliste</h2>
 	<table>
 		<tr>
