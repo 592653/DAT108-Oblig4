@@ -6,16 +6,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/paameldt") //URL nettstedet
 public class PaameldtController {
 
-	@GetMapping(value="/paameldt")
+	@GetMapping
 	public String HentDeltageliste() {
 		return "deltagerliste";
 	}
-	@PostMapping(value="/paameldt")
+	@PostMapping
 	public String deltakerListe(HttpSession session) {
-		return "redirect:deltakerliste";
+		
+		//if()
+		//Sjekk om innlogget, sjekke om session er validert
+		return "redirect:deltakerliste";  //jsp filen
 	}
 }

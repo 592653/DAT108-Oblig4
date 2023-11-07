@@ -22,7 +22,10 @@ public class DeltagerListeController {
 	}
 	
 	@PostMapping(value="/deltagerliste")
-	public String loggetUt() {
+	public String loggetUt(HttpSession session) {
+		
+		session.invalidate();
 		return "redirect:innlogging"; //URL
 	}
+	
 }

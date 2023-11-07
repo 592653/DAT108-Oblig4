@@ -9,10 +9,10 @@
 	<h2>Paameldingsbekreftelse</h2>
 	<p>Paameldingen er mottatt for</p>
 	<p>
-        <!-- ${d.fornavn} ${d.etternavn} ${d.mobil} ${d.kjonn} -->
-		&nbsp;&nbsp;&nbsp;Arne<br />
-		&nbsp;&nbsp;&nbsp;Arnesen<br />
-		&nbsp;&nbsp;&nbsp;90123456<br /> &nbsp;&nbsp;&nbsp;mann
+		&nbsp;&nbsp;&nbsp;${fornavn}<br />
+		&nbsp;&nbsp;&nbsp;${etternavn}<br />
+		&nbsp;&nbsp;&nbsp;${mobil}<br /> 
+        &nbsp;&nbsp;&nbsp;${kjonn}
 	</p>
 	<a href="deltagerliste">Gaa til deltagerlisten</a>
 </body>
