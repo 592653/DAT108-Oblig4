@@ -14,6 +14,8 @@ import jakarta.servlet.http.HttpSession;
 import no.hvl.dat108.Deltager;
 import no.hvl.dat108.DeltagerRepository;
 import no.hvl.dat108.InputValidator;
+import no.hvl.dat108.PaameldteService;
+import no.hvl.dat108.PassordService;
 import no.hvl.dat108.Util.LoginUtil;
 
 @Controller
@@ -22,12 +24,18 @@ public class PaameldingController {
 	
 	@Autowired
 	private DeltagerRepository repo;
+	
+	@Autowired
+	private PaameldteService paameldteService;
+
+	@Autowired
+	private PassordService passordService;
 
 	//@GetMapping bruker ber om å melde seg på viewet
 	@GetMapping //treng vi model model?
 	public String paameldingsbekreftelse(HttpSession session) {
 		//System.err.println("Bekreftelse av: " + session.getAttribute("bekreftelse"));
-		return "paameldt"; //navnet på jsp filen
+		return "paamelding"; //navnet på jsp filen
 	}
 	//@PostMapping Bruker har meldt seg på
 	//redirekte til pameldingsbekreftelse
@@ -36,7 +44,7 @@ public class PaameldingController {
 //			Model model, @RequestParam Deltager deltager, @RequestParam String mobil, HttpSession session) {
     	Deltager d = repo.findById((String)session.getAttribute("mobil")).get();
 		
-		model.addAttribute("fornavn", d.getFornavn());
+		model.addAttribute("fornavn", d.getFornavn()); //Lagrer data til neste side, push med oss videre
     	model.addAttribute("etternavn", d.getEtternavn());
     	model.addAttribute("mobil", d.getMobil());
     	model.addAttribute("Kjonn", d.getKjonn());

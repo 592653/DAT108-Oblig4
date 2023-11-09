@@ -22,8 +22,10 @@ public class DeltagerListeController {
 	}
 	
 	@PostMapping(value="/deltagerliste")
-	public String loggetUt(HttpSession session) {
+	public String loggetUt(HttpSession session, RedirectAttributes ra, HttpServletRequest request) {
 		
+		LoginUtil.loggUtBruker(request.getSession());
+		ra.addFlashAttribute("feilmelding", "Du er nå logget ut");
 		session.invalidate();
 		return "redirect:innlogging"; //URL
 	}
