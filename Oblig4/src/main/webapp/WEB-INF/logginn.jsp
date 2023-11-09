@@ -7,7 +7,9 @@
 </head>
 <body>
 	<h2>Logg inn</h2>
-	<p style="color:red;">Du er logget ut</p>
+        <% if (request.getAttribute("error") != null) { %>
+            <p style="color:red;">${error}</p>
+        <% } %>
 	<form method="post">
 		<fieldset>
 			<label for="mobil">Mobil:</label> <input type="text" name="mobil" />

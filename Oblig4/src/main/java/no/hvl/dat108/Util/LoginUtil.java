@@ -6,41 +6,31 @@ import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import no.hvl.dat108.Deltager;
 
-
 public class LoginUtil {
-	
-	public static void loggUtBruker(HttpSession session) {
-		session.invalidate();
-	}
 
 	public static void loggInnBruker(HttpServletRequest request, Deltager deltager) {
 
-		//Invalidere den gamle sesjonen
+		// Invalidere den gamle sesjonen
 		loggUtBruker(request.getSession());
-		//Opprette ein sesjon
-		HttpSession sesjon = request.getSession();
-		//Setter ein tid i sekunder til du blir logget ut
-		sesjon.setMaxInactiveInterval(600);
-		sesjon.setAttribute("bruker", deltager);
+		// Opprette ein sesjon
+		HttpSession session = request.getSession();
+		// Setter ein tid i sekunder til du blir logget ut
+		session.setMaxInactiveInterval(1200);
+		session.setAttribute("Id", deltager.getMobil());
 	}
-	
+
 	public static boolean erBrukerInnlogget(HttpSession session) {
-		
-		//Det må være ein sesjon, sendt med ein sesjonid parameter
-		return session != null 
-				&& session.getAttribute("bruker")!= null;
+
+		// Det må være ein sesjon, sendt med ein sesjonid parameter
+		return session != null && session.getAttribute("Id") != null;
 	}
-	public static boolean sjekkMobil(List<Deltager> deltagere, String mobil) {
-		if (mobil == null || mobil.trim()
-		                          .isEmpty()) {
-			return false;
-		}
-		if (deltagere == null || deltagere.isEmpty()) {
-			return false;
-		}
-		return deltagere.stream()
-		                .anyMatch(d -> d.getMobil()
-		                                .equals(mobil));
+
+	public static String getBrukerId(HttpSession session) {
+		return (String) session.getAttribute("Id");
+	}
+
+	public static void loggUtBruker(HttpSession session) {
+		session.invalidate();
 	}
 
 }

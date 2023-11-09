@@ -8,8 +8,11 @@
 
 <body>
 	<h2>Paamelding</h2>
-	<p style="color:red;">Paameldingsdetaljer er ugyldige</p>
-	<form method="post">
+        <% if (request.getAttribute("error") != null) { %>
+            <p style="color:red;">${error}</p>
+        <% } %>
+        
+        <form method="post">
 		<fieldset>
 		
 			<label>Fornavn</label>
@@ -23,7 +26,8 @@
 			
 			<label>Passord</label>
 			<input type="password" name="passord" />
-			<label>Passord repetert</label>
+			
+            <label>Passord repetert</label>
 			<input type="password" name="passordRepetert" />
 			
 			<label>Kjonn</label> 

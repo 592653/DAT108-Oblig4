@@ -1,33 +1,57 @@
 package no.hvl.dat108.Controller;
 
+import java.util.Collections;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import no.hvl.dat108.InputValidator;
+import no.hvl.dat108.Deltager;
+import no.hvl.dat108.DeltagerRepository;
 import no.hvl.dat108.Util.LoginUtil;
 
 @Controller
+@RequestMapping("/deltagerliste")
 public class DeltagerListeController {
-
-	//get logut
-	@GetMapping(value="/deltagerliste")
-	public String loggUt() {
-		return "logginn"; //jsp filnavnet
-	}
 	
-	@PostMapping(value="/deltagerliste")
-	public String loggetUt(HttpSession session, RedirectAttributes ra, HttpServletRequest request) {
+	@Autowired
+	DeltagerRepository repo;
+	
+	@GetMapping
+	public String getList(Model model, HttpSession session, RedirectAttributes ra) {
 		
-		LoginUtil.loggUtBruker(request.getSession());
-		ra.addFlashAttribute("feilmelding", "Du er nå logget ut");
-		session.invalidate();
-		return "redirect:innlogging"; //URL
+		//sjekke om bruker er logget inn
+		if (!LoginUtil.erBrukerInnlogget(session)) {
+			
+			ra.addFlashAttribute("error", "Du må logge inn");
+			return "redirect:logginn";
+		}
+		// find all users for list
+		List <Deltager> list = repo.findAll();
+		Collections.sort(list);
+		model.addAttribute("AlleBrukere", list);
+		
+		Deltager deltager = repo.findById(LoginUtil.getBrukerId(session)).get();
+		
+		model.addAttribute("currentFornavn", deltager.getFornavn());
+		model.addAttribute("currentEtternavn", deltager.getEtternavn());
+		model.addAttribute("currentMobil", deltager.getMobil());
+
+		return "deltagerliste";
 	}
 	
+	// post - redirect to logging out
+	@PostMapping
+	public String loggUt(HttpSession session, RedirectAttributes ra) {
+		LoginUtil.loggUtBruker(session);
+		
+		ra.addFlashAttribute("Error", "Du er logget ut");
+		return "redirect:logginn";
+	}
 }

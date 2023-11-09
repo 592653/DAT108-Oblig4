@@ -1,5 +1,8 @@
 package no.hvl.dat108;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+
 public class InputValidator {
 
 	    public static final String ANY_LETTER = "[a-zA-ZæøåÆØÅ]";
@@ -7,7 +10,6 @@ public class InputValidator {
 	    public static final String SIX_OR_MORE_TIMES = "{6,}";
 	    public static final String TWO_TIL_FOURTHY = "{2,40}";
 	    public static final String EIGHT_DIGIT_LONG = "\\d{8}";
-	    public static final String MAN_OR_WOMAN = "{mann|kvinne}";
 
 	    //Etternavn må være 2 lang og inneholde kun bokstaver
 	    public static boolean gyldigEtternavn(String etternavn) {
@@ -28,6 +30,6 @@ public class InputValidator {
 	    //Mobil må være nøyaktig 8 og ikkje være registrert før
 	    public static boolean gyldigMobil(String mobil) {
 	    	//Les gjennom deltagerliste?
-	    	return mobil != null && mobil.equals("^"+ EIGHT_DIGIT_LONG +"$");
+	    	return mobil != null && mobil.matches("^"+ EIGHT_DIGIT_LONG +"$");
 	    }
 	}
